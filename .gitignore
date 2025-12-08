@@ -1,0 +1,88 @@
+# -----------------------------
+# OS / Editor junk
+# -----------------------------
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# PyCharm / IntelliJ
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+.ipython/
+.profile_default/
+
+# -----------------------------
+# Python / Virtual env
+# -----------------------------
+venv/
+.venv/
+env/
+ENV/
+venv.bak/
+pip-wheel-metadata/
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Packages / build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+
+# -----------------------------
+# Logs / temp
+# -----------------------------
+logs/
+*.log
+tmp/
+.temp/
+.cache/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# -----------------------------
+# Data (adjust as you like)
+# -----------------------------
+# raw / heavy datasets
+data/raw/
+data/interim/
+data/tmp/
+
+# If you keep big CSVs here, ignore all:
+# data/*.csv
+
+# DB / local storage
+*.sqlite3
+*.db
+
+# -----------------------------
+# Models / artifacts
+# -----------------------------
+models/
+checkpoints/
+artifacts/
+runs/
+
+# -----------------------------
+# Secrets / config
+# -----------------------------
+.env
+*.env
+*.secret
+*.pem
+*.key
+
+# -----------------------------
+# DVC / MLflow (if you use them)
+# -----------------------------
+.dvc/
+dvc.lock
+mlruns/
