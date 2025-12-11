@@ -1,0 +1,23 @@
+numpy
+pandas
+scikit-learn
+imbalanced-learn
+matplotlib
+seaborn
+joblib
+
+# Explainability
+shap
+
+# Modeling (optional advanced model)
+xgboost
+
+# Web App
+streamlit
+
+# Interactive charts
+plotly
+
+# Utility packages
+pyyaml
+tqdm
