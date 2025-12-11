@@ -8,6 +8,10 @@ from src.evaluation import evaluate_model
 from src.profit import compute_profit_curve, find_best_threshold
 from src.retention import add_risk_scores, select_top_customers
 from src.explainability import generate_shap_summary
+from src.explainability import generate_shap_summary, explain_single_customer
+from src.model_io import save_model
+
+
 
 
 def run():
@@ -86,7 +90,17 @@ def run():
     print(f"Recall: {best['recall']:.3f}")
     print(f"Precision: {best['precision']:.3f}")
 
-    # 9. Retention Engine
+    # 8. Save production model (Random Forest) + config
+    save_model(
+        pipeline=rf_pipe,
+        best_threshold=best["threshold"],
+        c_churn=200.0,
+        c_offer=20.0,
+        model_dir="models"
+    )
+
+
+    # 10. Retention Engine
     risk_df = add_risk_scores(
         customer_ids=ids_test,
         y_proba=y_proba_rf,
@@ -99,6 +113,29 @@ def run():
     print("\n====== Retention Recommendation ======")
     print(selected.head(10))
     print(f"\nTotal customers targeted: {len(selected)}")
+
+    # 11. Local SHAP explanation for top high-risk customer (Random Forest)
+    top_customer = selected.iloc[0]
+    top_customer_id = top_customer["customerID"]
+
+    # Find this customer's row in X_test using ids_test
+    mask = ids_test == top_customer_id
+    x_row = X_test[mask].iloc[0]
+
+    rf_explanation = explain_single_customer(
+        pipeline=rf_pipe,
+        X_train=X_train,
+        x_row=x_row,
+        model_name="random_forest",
+        top_n=5
+    )
+
+    print(f"\n====== Local Explanation (Random Forest) for customer {top_customer_id} ======")
+    print("Top contributing features (feature, shap_value):")
+    for item in rf_explanation:
+        direction = "increases churn risk" if item["shap_value"] > 0 else "decreases churn risk"
+        print(f"  {item['feature']}: {item['shap_value']:.3f} → {direction}")
+
 
 
 if __name__ == "__main__":
