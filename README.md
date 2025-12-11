@@ -185,7 +185,7 @@ Recommendation: PRIORITY RETENTION
 
 ---
 
-# 🛠️ How It Works (Simple Explanation)
+# 🛠️ How It Works
 
 1. The model learns patterns from past churners.
 2. It predicts how likely a new customer is to leave.
