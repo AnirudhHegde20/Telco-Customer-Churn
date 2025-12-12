@@ -241,4 +241,3 @@ Data Science & ML | Analytics Engineering | MLOps
 
 * GitHub: [https://github.com/AnirudhHegde20](https://github.com/AnirudhHegde20)
 * LinkedIn: [https://linkedin.com/in/anirudhhegde1997](https://linkedin.com/in/anirudhhegde1997)
-```
